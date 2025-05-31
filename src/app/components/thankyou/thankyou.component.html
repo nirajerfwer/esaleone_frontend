@@ -1,0 +1,26 @@
+<div class="thank-you-container">
+  <div class="card">
+    <h1>Thank You for Your Purchase!</h1>
+    <p class="order-id">Your Order ID: <strong>{{ OrderId }}</strong></p>
+
+    <h2>Customer Details</h2>
+    <div class="section">
+      <p><strong>Name:</strong> {{ OrderDetails?.data.CheckOutId?.fullName }}</p>
+      <p><strong>Email:</strong> {{ OrderDetails?.data.CheckOutId?.email }}</p>
+      <p><strong>Address:</strong> {{ OrderDetails?.data.CheckOutId?.address }}</p>
+    </div>
+
+    <h2>Order Summary</h2>
+    <div class="section">
+      <div *ngFor="let item of OrderDetails?.data.Products" class="order-item">
+        <p>{{ item.title }} (x{{ item.quantity }}) - ₹{{ item.price * item.quantity }}</p>
+      </div>
+      <hr />
+      <p><strong>Subtotal:</strong> ₹{{ OrderDetails?.data?.SubTotal }}</p>
+      <p><strong>Tax:</strong> ₹{{ OrderDetails?.data?.Tax }}</p>
+      <p class="total"><strong>Total:</strong> ₹{{ OrderDetails?.data?.Totalprice }}</p>
+    </div>
+
+    <p class="footer-note">A confirmation has been sent to your email. We'll notify you once it's shipped!</p>
+  </div>
+</div>

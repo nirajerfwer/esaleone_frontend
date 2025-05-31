@@ -1,0 +1,58 @@
+<div class="checkout-container">
+  <!-- Left Section -->
+  <form class="form-section" [formGroup]="checkoutForm">
+    <!-- Contact Info -->
+    <h2>Contact Information</h2>
+    <input type="email" formControlName="email" placeholder="Email" />
+    <div *ngIf="email.invalid && email.touched" class="error">Valid email required</div>
+
+    <input type="text" formControlName="phone" placeholder="Phone Number" />
+    <div *ngIf="phone.invalid && phone.touched" class="error">Valid 10-digit phone required</div>
+
+    <!-- Delivery Info -->
+    <h2>Delivery Address</h2>
+    <div class="row">
+      <input type="text" formControlName="firstName" placeholder="First Name" />
+      <input type="text" formControlName="lastName" placeholder="Last Name" />
+    </div>
+    <input type="text" formControlName="address" placeholder="Address" />
+    <input type="text" formControlName="city" placeholder="City" />
+    <select formControlName="state">
+      <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+    </select>
+    <input type="text" formControlName="zipcode" placeholder="Pin Code" />
+
+    <!-- Payment Info -->
+    <h2>Payment</h2>
+    <input type="text" formControlName="cardNumber" placeholder="Card Number" />
+    <div *ngIf="cardNumber.invalid && cardNumber.touched" class="error">16-digit card number required</div>
+
+    <input type="text" formControlName="expiryDate" placeholder="MM/YY" />
+    <div *ngIf="expiryDate.invalid && expiryDate.touched" class="error">Date must be valid and future</div>
+
+    <input type="text" formControlName="cvv" placeholder="CVV" />
+    <div *ngIf="cvv.invalid && cvv.touched" class="error">3-digit CVV required</div>
+
+    <button type="submit" [disabled]="checkoutForm.invalid" (click)="submit()" class="pay-btn">
+      Pay Now
+    </button>
+  </form>
+
+  <!-- Right Section -->
+  <div class="summary-section">
+    <h3>Order Summary</h3>
+    <!-- <div *ngFor="let product of cartItems" class="cart-item"> -->
+      <div class="cart-item"></div>
+      <div class="product_show"><img [src]="product.image" style="width: 50px;"><h4>{{ product.title }}</h4></div>
+      <div class="details">
+
+        <p>Qty: {{ product.quantity }}</p>
+        <p>Price: ₹{{ subtotal }}</p>
+        <p>subtotal: ₹{{ subtotal }}</p>
+        <p>Tax: ₹{{tax}}</p>
+      </div>
+    <!-- </div> -->
+    <hr />
+    <p><strong>Total:</strong> ₹{{ totalPrice }}</p>
+  </div>
+</div>

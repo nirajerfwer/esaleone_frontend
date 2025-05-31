@@ -1,0 +1,66 @@
+.thank-you-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  .card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+
+    h1 {
+      font-size: 2rem;
+      color: #28a745;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .order-id {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+      color: #333;
+    }
+
+    .section {
+      margin: 1rem 0;
+
+      p {
+        margin: 0.3rem 0;
+        font-size: 1rem;
+      }
+
+      .order-item {
+        margin-bottom: 0.5rem;
+        background: #f1f1f1;
+        padding: 0.5rem;
+        border-radius: 8px;
+      }
+
+      .total {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #000;
+      }
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  }
+}
