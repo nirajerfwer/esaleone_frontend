@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
 
 @Component({
@@ -23,5 +23,9 @@ export class ThankyouComponent implements OnInit {
       this.OrderDetails = data;
       console.log("OrderDetails",this.OrderDetails);
     });
+    setTimeout(()=>{
+      localStorage.removeItem('OrderId');
+    },0);
   }
+
 }

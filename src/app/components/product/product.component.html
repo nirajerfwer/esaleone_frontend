@@ -1,6 +1,8 @@
 <div class="product-wrapper">
   <div class="left-section">
-    <img [src]="mainImage" alt="Main Product Image" class="main-img" />
+    <div class="main-image-container">
+      <img [src]="mainImage" alt="Main Product Image" class="main-img" />
+    </div>
     <div class="thumbnails">
       <img
         *ngFor="let img of product?.images"
@@ -8,34 +10,44 @@
         alt="Product thumbnail"
         (click)="selectImage(img)"
         [class.selected]="img === mainImage"
+        class="thumbnail"
       />
     </div>
   </div>
 
-  <div *ngIf="maxquantity > 0" class="right-section">
+  <div class="right-section" *ngIf="maxquantity > 0">
     <h1 class="title">{{ product?.title }}</h1>
-    <p class="price">₹{{ product?.price }}</p>
 
     <div class="options">
-      <div class="option">
+      <div class="option-group">
         <label for="color">Color</label>
-        <select id="color" [(ngModel)]="selectedColor">
+        <select id="color" [(ngModel)]="selectedColor" class="option-select">
           <option *ngFor="let color of product?.colors" [value]="color">{{ color }}</option>
         </select>
       </div>
 
-      <div class="option">
+      <div class="option-group">
         <label for="size">Size</label>
-        <select id="size" [(ngModel)]="selectedSize">
+        <select id="size" [(ngModel)]="selectedSize" class="option-select">
           <option *ngFor="let size of product?.sizes" [value]="size">{{ size }}</option>
         </select>
       </div>
 
-      <div class="option">
+      <div class="option-group">
         <label for="quantity">Quantity</label>
-        <input type="number" id="quantity" [(ngModel)]="quantity" (change)="checkquantity()"  [max]="maxquantity" min="1" />
+        <input
+          type="number"
+          id="quantity"
+          [(ngModel)]="quantity"
+          (change)="checkquantity()"
+          [max]="maxquantity"
+          min="1"
+          class="quantity-input"
+        />
       </div>
     </div>
+
+    <p class="price"><span class="currency">₹</span>{{ product?.price }}</p>
 
     <button class="buy-btn" (click)="buyProduct()">Buy Now</button>
 
@@ -44,9 +56,10 @@
       <p>{{ product?.description }}</p>
     </div>
   </div>
-  <div *ngIf="maxquantity <= 0 " class="right-section">
+
+  <div class="right-section out-of-stock" *ngIf="maxquantity <= 0">
     <h1 class="title">{{ product?.title }}</h1>
-    <p class="price">₹{{ product?.price }}</p>
+    <p class="price"><span class="currency">₹</span>{{ product?.price }}</p>
 
     <button class="buy-btn" disabled>Out Of Stock</button>
 

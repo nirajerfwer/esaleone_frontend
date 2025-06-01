@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsServicesTsService } from '../../services/products.services.ts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -59,6 +59,9 @@ export class CheckoutComponent implements OnInit {
   getProduct() {
     this.product = JSON.parse(localStorage.getItem('product')!); //ToDo integrate .. cart in that
     console.log('product', this.product);
+    setTimeout(()=>{
+      localStorage.removeItem('product');
+    },0)
   }
 
   get email() {
@@ -118,6 +121,7 @@ export class CheckoutComponent implements OnInit {
           console.log("data in checkout",data);
 
           localStorage.setItem("OrderId",data.data.order._id)
+
           //redirect to thank you page..
           this.router.navigate(['thankyou']);
         }
